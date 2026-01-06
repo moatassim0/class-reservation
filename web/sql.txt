@@ -1,0 +1,60 @@
+CREATE TABLE users (
+    user_id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY, -- Auto-increment equivalent
+    name VARCHAR(255) NOT NULL,
+    age INT NOT NULL,
+    email VARCHAR(255) UNIQUE NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    role VARCHAR(10) CHECK (role IN ('user', 'admin')), -- ENUM replaced with CHECK constraint
+    balance DECIMAL(10, 2) DEFAULT 0.00
+);
+
+CREATE TABLE classes (
+    class_id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY, -- Auto-increment equivalent
+    name VARCHAR(255) NOT NULL,
+    price DECIMAL(10, 2) NOT NULL,
+    available_quantity INT NOT NULL,
+    picture_url VARCHAR(255), -- Java DB supports VARCHAR for URLs
+    class_datetime TIMESTAMP NOT NULL
+);
+
+CREATE TABLE purchases (
+    transaction_id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY, -- Auto-increment equivalent
+    customer_id INT, -- Foreign key referencing users table
+    purchase_datetime TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    quantity INT NOT NULL,
+    total_cost DECIMAL(10, 2) NOT NULL,
+    class_id INT, -- Foreign key referencing classes table
+    CONSTRAINT fk_customer FOREIGN KEY (customer_id) REFERENCES users(user_id),
+    CONSTRAINT fk_class FOREIGN KEY (class_id) REFERENCES classes(class_id)
+);
+
+INSERT INTO users (name, age, email, password, role, balance)
+VALUES 
+    ('ahmad', 24, 'ahmad@gmail.com', '123', 'user', 200.00),
+    ('admin', 18, 'admin@example.com', '123', 'admin', 250.00);
+    ('rami', 21, 'rami@gmail.com', 'rami123', 'admin', 1000.00);
+
+
+INSERT INTO purchases (customer_id, class_id, quantity, total_cost) //does not need to be used , purchases are added after a user books.
+VALUES (
+    (SELECT user_id FROM users WHERE name = 'Ahmad'), -- Retrieves Ahmad's user ID
+    (SELECT class_id FROM classes WHERE name = 'Yoga'), -- Retrieves the Yoga class ID
+    1, -- Quantity purchased
+    (SELECT price FROM classes WHERE name = 'Yoga') -- Calculates total cost based on Yoga class price
+);
+
+INSERT INTO classes (name, price, available_quantity, picture_url, class_datetime)
+VALUES 
+    ('Pilates', 200, 10, 'https://i.imgur.com/4p5ECmT.jpeg', TIMESTAMP('2024-11-30 16:30:00')),
+	('Yoga', 100, 10, 'https://i.imgur.com/syyAJW3.jpeg', TIMESTAMP('2024-11-21 13:00:00')),
+    ('Boxing', 150, 10, 'https://i.imgur.com/8yIivYE.jpeg', TIMESTAMP('2024-11-22 15:00:00')),
+    ('Swimming', 50, 10, 'https://i.imgur.com/Y6vrmVl.jpeg', TIMESTAMP('2024-11-25 11:30:00')),
+    ('Zumba', 250, 15, 'https://i.imgur.com/goUbK3X.jpeg', TIMESTAMP('2024-11-27 11:00:00')),
+    ('CrossFit', 300, 15, 'https://i.imgur.com/kxDxInL.jpeg', TIMESTAMP('2024-11-27 08:30:00')),
+    ('Biking', 400, 20, 'https://i.imgur.com/q7n3gyP.jpeg', TIMESTAMP('2024-11-30 09:00:00')),
+    ('Kickboxing', 350, 30, 'https://i.imgur.com/IQk4Xkj.jpeg', TIMESTAMP('2024-11-27 12:00:00')),
+    ('TRX', 50, 10, 'https://i.imgur.com/fq63Ma1.jpeg', TIMESTAMP('2024-11-25 13:30:00')),
+    ('Bootcamp', 450, 10, 'https://i.imgur.com/bvQLD3G.jpeg', TIMESTAMP('2024-11-26 11:30:00'));
+
+
+

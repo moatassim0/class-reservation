@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Fitness Website</title>
+	<style>
+		body 
+		{
+			margin: 0;
+			padding: 0;
+			font-family: Arial, sans-serif;
+			background-image: url('BG.jpg');
+			background-repeat: repeat;
+
+		}
+		
+		header 
+		{
+			background-color: seaGreen;
+			color: white;
+			padding: 1rem;
+			text-align: center;
+		}
+		
+		#intro 
+		{
+			line-height: 1.5;
+			margin-bottom: 1rem;
+			width: 80%;
+			margin-left:10%;
+			margin-right:10%;
+			padding:2%;
+			background-color:white;
+			opacity:0.8;
+			border-radius: 15px 50px;
+		}
+		
+		p
+		{
+			line-height: 1.5;
+			margin-bottom: 1rem;
+			width: 70%;
+			margin-left:10%;
+			margin-right:10%;
+			padding:2%;
+			background-color:white;
+			opacity:0.8;
+			border-radius: 15px 50px;
+			padding:10%;
+		}
+
+		
+		nav 
+		{
+			background-color: seaGreen;
+			color: white;
+			padding: 1rem;
+			text-align: center;
+			position: fixed;
+			width: 100%;
+			top: 0;
+			z-index: 1000;
+			max-height: 60px;
+			overflow-y: auto;
+			
+		}
+
+		nav a 
+		{
+			color: white;
+			text-decoration: none;
+			margin: 0 1rem;
+		}
+
+		nav a:hover 
+		{
+			color: lightgray;
+		}
+
+		h1 
+		{
+			color: white;
+			margin-bottom: 1rem;
+		}
+		
+		h2
+		{
+			margin-bottom:50px;
+		}
+		
+		label 
+		{
+            display: block;
+            margin-bottom: 5px;
+        }
+		
+		.formbox
+		{
+			margin:8%;
+			width:80%;
+			height:50%;
+			background-color:white;
+			box-shadow: 0 0 10px rgba(0, 0, 0, .7);
+			padding:3%;
+			border-radius: 15px 50px;
+		}
+		
+		#result
+		{
+			margin-bottom:100px;
+			line-height: 1.5;
+			margin-top:2%;
+			margin-bottom: 1rem;
+			width: 35%;
+			margin-left:20%;
+			margin-right:20%;
+			padding:5%;
+			opacity:1;
+			border-radius: 15px 50px;
+			align:center;
+		}
+		
+		input[type=number] 
+		{
+			padding: 10px 10px;
+			margin: 5px 0;
+			box-sizing: border-box;
+			border-radius: 9px;
+		}
+		
+		input[type=number]:focus 
+		{
+			border: 3px solid gray;
+		}
+		
+		td
+		{
+			padding-right: 30px;
+			padding-left: 20px;
+		}
+                .user
+                {
+                        font-weight: 600;
+                        background-image:linear-gradient(180deg, palegreen, seagreen, seagreen);
+                        padding: 15px;
+                }
+		
+	</style>
+	<script>
+		function calculateAndScroll() 
+		{
+            
+            calculate();
+
+            document.getElementById('result').scrollIntoView({ behavior: 'smooth' });
+        }
+		
+		function calculate() 
+		{
+            var form = document.getElementById("exerciseForm");
+            var walkingMET = parseFloat(form.elements["walking"].value) * 3.8;
+            var joggingMET = parseFloat(form.elements["jogging"].value) * 9.8;
+            var cyclingMET = parseFloat(form.elements["cycling"].value) * 8.0;
+            var swimmingMET = parseFloat(form.elements["swimming"].value) * 7.0;
+            var strengthTrainingMET = parseFloat(form.elements["strength-training"].value) * 4.0;
+            var yogaMET = parseFloat(form.elements["yoga"].value) * 3.0;
+			var jumpingRopeMET = parseFloat(form.elements["jumping-rope"].value) * 12.0;
+			var rowingMET = parseFloat(form.elements["rowing"].value) * 6.0;
+			var ellipticalMET = parseFloat(form.elements["elliptical"].value) * 5.0;
+			var stairClimbingMET = parseFloat(form.elements["stair-climbing"].value) * 8.0;
+			var hiitMET = parseFloat(form.elements["hiit"].value) * 8.0;
+			var dancingMET = parseFloat(form.elements["dancing"].value) * 7.0;
+			var hikingMET = parseFloat(form.elements["hiking"].value) * 6.0;
+			var skiingMET = parseFloat(form.elements["skiing"].value) * 7.0;
+			var kickboxingMET = parseFloat(form.elements["kickboxing"].value) * 10.0;
+			var circuitTrainingMET = parseFloat(form.elements["circuit-training"].value) * 4.5;
+			var footballMET = parseFloat(form.elements["football"].value) * 8.0;
+			var basketballMET = parseFloat(form.elements["basketball"].value) * 6.0;
+			var tennisMET = parseFloat(form.elements["tennis"].value) * 7.0;
+			var volleyballMET = parseFloat(form.elements["volleyball"].value) * 3.5;
+			var badmintonMET = parseFloat(form.elements["badminton"].value) * 5.5;
+			var tableTennisMET = parseFloat(form.elements["table-tennis"].value) * 4.0;
+			var golfMET = parseFloat(form.elements["golf"].value) * 4.5;
+			var cricketMET = parseFloat(form.elements["cricket"].value) * 5.0;
+			var rugbyMET = parseFloat(form.elements["rugby"].value) * 10.0;
+			var hockeyMET = parseFloat(form.elements["hockey"].value) * 8.0;
+			var squashMET = parseFloat(form.elements["squash"].value) * 9.0;
+			var martialArtsMET = parseFloat(form.elements["martial-arts"].value) * 9.0;
+			var rockClimbingMET = parseFloat(form.elements["rock-climbing"].value) * 8.0;
+			var surfingMET = parseFloat(form.elements["surfing"].value) * 3.0;
+			var skateboardingMET = parseFloat(form.elements["skateboarding"].value) * 5.0;
+			var parkourMET = parseFloat(form.elements["parkour"].value) * 10.0;
+			var pilatesMET = parseFloat(form.elements["pilates"].value) * 3.5;
+			var taekwondoMET = parseFloat(form.elements["taekwondo"].value) * 7.5;
+			var kayakingMET = parseFloat(form.elements["kayaking"].value) * 5.0;
+			var mountaineeringMET = parseFloat(form.elements["mountaineering"].value) * 8.5;
+			var balletMET = parseFloat(form.elements["ballet"].value) * 4.5;
+			var crossfitMET = parseFloat(form.elements["crossfit"].value) * 9.0;
+			var skydivingMET = parseFloat(form.elements["skydiving"].value) * 3.0;
+			var rollerbladingMET = parseFloat(form.elements["rollerblading"].value) * 6.5;
+			var capoeiraMET = parseFloat(form.elements["capoeira"].value) * 8.0;
+			var calisthenicsMET = parseFloat(form.elements["calisthenics"].value) * 7.0;
+			var fencingMET = parseFloat(form.elements["fencing"].value) * 6.0;
+			var boulderingMET = parseFloat(form.elements["bouldering"].value) * 7.5;
+			var slackliningMET = parseFloat(form.elements["slacklining"].value) * 3.5;
+			var trampoliningMET = parseFloat(form.elements["trampolining"].value) * 4.0;
+			var mountainBikingMET = parseFloat(form.elements["mountain-biking"].value) * 8.0;
+			var archeryMET = parseFloat(form.elements["archery"].value) * 3.0;
+
+			
+			
+			
+            var totalMET = walkingMET + joggingMET + cyclingMET + swimmingMET + strengthTrainingMET + yogaMET + jumpingRopeMET + rowingMET + ellipticalMET + stairClimbingMET + hiitMET + dancingMET + hikingMET + skiingMET + kickboxingMET + circuitTrainingMET + footballMET + basketballMET + tennisMET + volleyballMET + badmintonMET + tableTennisMET + golfMET + cricketMET + rugbyMET + hockeyMET + squashMET + martialArtsMET + rockClimbingMET + surfingMET + skateboardingMET + parkourMET + pilatesMET + taekwondoMET + kayakingMET + mountaineeringMET + balletMET + crossfitMET + skydivingMET + rollerbladingMET + capoeiraMET + calisthenicsMET + fencingMET + boulderingMET + slackliningMET + trampoliningMET + mountainBikingMET + archeryMET;
+
+            
+			var weightKg = prompt("Enter your weight in kilograms:");
+
+            var caloriesBurned = totalMET * weightKg;
+			
+			
+			var totalMETsParagraph = document.createElement("p");
+			var caloriesBurnedParagraph = document.createElement("p");
+
+			
+			
+			caloriesBurnedParagraph.innerHTML = "Calories Burned: <span style='color: red;'>" + caloriesBurned.toFixed(2) + "</span>";
+			totalMETsParagraph.innerHTML = "Total METs: <span style='color: green;'>" + totalMET.toFixed(2) + "</span>";
+			
+			var resultContainer = document.getElementById("result");
+
+			
+			resultContainer.innerHTML = "";
+
+			
+			
+			resultContainer.appendChild(caloriesBurnedParagraph);
+			resultContainer.appendChild(totalMETsParagraph);
+        }
+    </script>
+</head>
+<body>
+	<header>
+		<br>
+		<h1>Calorie Tracker</h1>
+	</header>
+	
+	<nav>
+		<a href="index.html">Home</a>
+		<a href="guide.html">Guides</a>
+		<a href="add_class.html">BMI Calculator</a>
+		<a href="calc.html">Calorie Calculator</a>
+		<a href="#top">Calorie Tracker</a>
+		<a href="faqs.html">FAQs</a>
+                <a class="user" href='login.jsp'>Login</a>
+		<a class="user" href='signup.jsp'>Sign Up</a>
+	</nav>
+	
+	<p id="intro">
+		Welcome to our Calorie Tracker!<br>
+		Your personalized tool for monitoring and managing your daily caloric burning, with our calorie tracker you can effortlessly keep track of the calories you are burning through all the possible physical activities that are listed here using the concept of MET (Metabolic Equivalent of Task).<br>
+		But First, What are MET values ?<br>
+		MET values are a way to quantify the energy cost of physical activities. They represent the ratio of the rate of energy expended during an activity to the rate of energy expended at rest, as each excercise has its own estimated values, they describe the relative intensity of each activity.
+	</p>
+
+	<div class="formbox">
+		<h2>Enter Values in Hours</h2>
+		
+		<form id="exerciseForm">
+			<table>
+			<tr>
+				<td><label for="walking">Walking</label></td>
+				<td><input type="number" id="walking" name="walking" step="0.25" min="0" value="0"></td>
+				
+				<td><label for="football">Football</label></td>
+				<td><input type="number" id="football" name="football" step="0.25" min="0" value="0"></td>
+				
+				<td><label for="pilates">Pilates</label></td>
+				<td><input type="number" id="pilates" name="pilates" step="0.25" min="0" value="0"></td>
+			</tr>
+			<tr>
+				<td><label for="jogging">Jogging/Running</label></td>
+				<td><input type="number" id="jogging" name="jogging" step="0.25" min="0" value="0"></td>
+				
+				<td><label for="basketball">Basketball</label></td>
+				<td><input type="number" id="basketball" name="basketball" step="0.25" min="0" value="0"></td>
+				
+				<td><label for="taekwondo">Taekwondo</label></td>
+				<td><input type="number" id="taekwondo" name="taekwondo" step="0.25" min="0" value="0"></td>
+			</tr>
+			<tr>
+				<td><label for="cycling">Cycling</label></td>
+				<td><input type="number" id="cycling" name="cycling" step="0.25" min="0" value="0"></td>
+				
+				<td><label for="tennis">Tennis</label></td>
+				<td><input type="number" id="tennis" name="tennis" step="0.25" min="0" value="0"></td>
+				
+				<td><label for="kayaking">Kayaking</label></td>
+				<td><input type="number" id="kayaking" name="kayaking" step="0.25" min="0" value="0"></td>
+			</tr>
+			<tr>
+				<td><label for="swimming">Swimming</label></td>
+				<td><input type="number" id="swimming" name="swimming" step="0.25" min="0" value="0"></td>
+				
+				<td><label for="volleyball">Volleyball</label></td>
+				<td><input type="number" id="volleyball" name="volleyball" step="0.25" min="0" value="0"></td>
+				
+				<td><label for="mountaineering">Mountaineering</label></td>
+				<td><input type="number" id="mountaineering" name="mountaineering" step="0.25" min="0" value="0"></td>
+			</tr>
+			<tr>
+				<td><label for="strength-training">Strength Training</label></td>
+				<td><input type="number" id="strength-training" name="strength-training" step="0.25" min="0" value="0"></td>
+				
+				<td><label for="badminton">Badminton</label></td>
+				<td><input type="number" id="badminton" name="badminton" step="0.25" min="0" value="0"></td>
+				
+				<td><label for="ballet">Ballet</label></td>
+				<td><input type="number" id="ballet" name="ballet" step="0.25" min="0" value="0"></td>
+			</tr>
+			<tr>
+				<td><label for="yoga">Yoga</label></td>
+				<td><input type="number" id="yoga" name="yoga" step="0.25" min="0" value="0"></td>
+				
+				<td><label for="table-tennis">Table Tennis</label></td>
+				<td><input type="number" id="table-tennis" name="table-tennis" step="0.25" min="0" value="0"></td>
+				
+				<td><label for="crossfit">Crossfit</label></td>
+				<td><input type="number" id="crossfit" name="crossfit" step="0.25" min="0" value="0"></td>
+			</tr>
+			<tr>
+				<td><label for="jumping-rope">Jumping Rope </label></td>
+				<td><input type="number" id="jumping-rope" name="jumping-rope" step="0.25" min="0" value="0"></td>
+				
+				<td><label for="golf">Golf</label></td>
+				<td><input type="number" id="golf" name="golf" step="0.25" min="0" value="0"></td>
+				
+				<td><label for="skydiving">Skydiving</label></td>
+				<td><input type="number" id="skydiving" name="skydiving" step="0.25" min="0" value="0"></td>
+
+			</tr>
+			<tr>
+				<td><label for="rowing">Rowing</label></td>
+				<td><input type="number" id="rowing" name="rowing" step="0.25" min="0" value="0"></td>
+				
+				<td><label for="cricket">Cricket</label></td>
+				<td><input type="number" id="cricket" name="cricket" step="0.25" min="0" value="0"></td>
+				
+				<td><label for="rollerblading">Rollerblading</label></td>
+				<td><input type="number" id="rollerblading" name="rollerblading" step="0.25" min="0" value="0"></td>
+				
+			</tr>
+			<tr>
+				<td><label for="elliptical">Elliptical Training</label></td>
+				<td><input type="number" id="elliptical" name="elliptical" step="0.25" min="0" value="0"></td>
+				
+				<td><label for="rugby">Rugby</label></td>
+				<td><input type="number" id="rugby" name="rugby" step="0.25" min="0" value="0"></td>
+				
+				<td><label for="capoeira">Capoeira</label></td>
+				<td><input type="number" id="capoeira" name="capoeira" step="0.25" min="0" value="0"></td>
+				
+			</tr>
+			<tr>
+				<td><label for="stair-climbing">Stair Climbing </label></td>
+				<td><input type="number" id="stair-climbing" name="stair-climbing" step="0.25" min="0" value="0"></td>
+				
+				<td><label for="hockey">Hockey</label></td>
+				<td><input type="number" id="hockey" name="hockey" step="0.25" min="0" value="0"></td>
+				
+				<td><label for="calisthenics">Calisthenics</label></td>
+				<td><input type="number" id="calisthenics" name="calisthenics" step="0.25" min="0" value="0"></td>
+				
+			</tr>
+			<tr>
+				<td><label for="hiit">High-Intensity Interval Training </label></td>
+				<td><input type="number" id="hiit" name="hiit" step="0.25" min="0" value="0"></td>
+				
+				<td><label for="squash">Squash</label></td>
+				<td><input type="number" id="squash" name="squash" step="0.25" min="0" value="0"></td>
+				
+				<td><label for="fencing">Fencing</label></td>
+				<td><input type="number" id="fencing" name="fencing" step="0.25" min="0" value="0"></td>
+				
+			</tr>
+			<tr>
+				<td><label for="dancing">Dancing</label></td>
+				<td><input type="number" id="dancing" name="dancing" step="0.25" min="0" value="0"></td>
+				
+				<td><label for="martial-arts">Martial Arts</label></td>
+				<td><input type="number" id="martial-arts" name="martial-arts" step="0.25" min="0" value="0"></td>
+				
+				<td><label for="bouldering">Bouldering</label></td>
+				<td><input type="number" id="bouldering" name="bouldering" step="0.25" min="0" value="0"></td>
+				
+			</tr>
+			<tr>
+				<td><label for="hiking">Hiking</label></td>
+				<td><input type="number" id="hiking" name="hiking" step="0.25" min="0" value="0"></td>
+				
+				<td><label for="rock-climbing">Rock Climbing</label></td>
+				<td><input type="number" id="rock-climbing" name="rock-climbing" step="0.25" min="0" value="0"></td>
+				
+				<td><label for="slacklining">Slacklining</label></td>
+				<td><input type="number" id="slacklining" name="slacklining" step="0.25" min="0" value="0"></td>
+				
+			</tr>
+			<tr>
+				<td><label for="skiing">Skiing</label></td>
+				<td><input type="number" id="skiing" name="skiing" step="0.25" min="0" value="0"></td>
+				
+				<td><label for="surfing">Surfing</label></td>
+				<td><input type="number" id="surfing" name="surfing" step="0.25" min="0" value="0"></td>
+				
+				<td><label for="trampolining">Trampolining</label></td>
+				<td><input type="number" id="trampolining" name="trampolining" step="0.25" min="0" value="0"></td>
+				
+			</tr>
+			<tr>
+				<td><label for="kickboxing">Kickboxing</label></td>
+				<td><input type="number" id="kickboxing" name="kickboxing" step="0.25" min="0" value="0"></td>
+				
+				<td><label for="skateboarding">Skateboarding</label></td>
+				<td><input type="number" id="skateboarding" name="skateboarding" step="0.25" min="0" value="0"></td>
+				
+				<td><label for="mountain-biking">Mountain Biking</label></td>
+				<td><input type="number" id="mountain-biking" name="mountain-biking" step="0.25" min="0" value="0"></td>
+
+				
+			</tr>
+			<tr>
+				<td><label for="circuit-training">Circuit Training</label></td>
+				<td><input type="number" id="circuit-training" name="CircuitTrainingTime" step="0.25" min="0" value="0"></td>
+				
+				<td><label for="parkour">Parkour</label></td>
+				<td><input type="number" id="parkour" name="parkour" step="0.25" min="0" value="0"></td>
+				
+				<td><label for="archery">Archery</label></td>
+				<td><input type="number" id="archery" name="archery" step="0.25" min="0" value="0"></td>
+				
+			</tr>
+			
+			<tr><td><br></td></tr>
+			
+			<tr colspan="4">
+				<td><button type="button" onclick="calculateAndScroll()">Calculate</button> <input type="reset" value="Reset"></td>
+			</tr>
+			</table>
+		</form>
+    </div>
+	
+	
+    <div id="result"></div>
+	
+</body>
+</html>

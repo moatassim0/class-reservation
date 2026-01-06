@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Fitness Website</title>
+	<style>
+		body 
+		{
+			margin: 0;
+			padding: 0;
+			font-family: Arial, sans-serif;
+			background-image: url('BG.jpg');
+			background-repeat: repeat;
+
+		}
+		
+		header 
+		{
+			background-color: seaGreen;
+			color: white;
+			padding: 1rem;
+			text-align: center;
+		}
+		
+		
+		
+		nav 
+		{
+			background-color: seaGreen;
+			color: white;
+			padding: 1rem;
+			text-align: center;
+			position: fixed;
+			width: 100%;
+			top: 0;
+			z-index: 1000;
+			max-height: 60px;
+			overflow-y: auto;
+			
+		}
+
+		nav a 
+		{
+			color: white;
+			text-decoration: none;
+			margin: 0 1rem;
+		}
+
+		nav a:hover 
+		{
+			color: lightgray;
+		}
+
+		h1 
+		{
+			color: white;
+			margin-bottom: 1rem;
+		}
+
+		.pbox 
+		{
+			line-height: 1.5;
+			margin-top:2%;
+			margin-bottom: 1rem;
+			width: 80%;
+			margin-left:10%;
+			margin-right:10%;
+			padding:2%;
+			background-color:white;
+			opacity:0.8;
+			border-radius: 15px 50px;
+			display: inline-block;
+		}
+		
+		.jump
+		{
+			line-height: 1.5;
+			margin-top:2%;
+			margin-bottom: 1rem;
+			width: 35%;
+			margin-left:30%;
+			margin-right:30%;
+			padding:2%;
+			background-color:white;
+			opacity:1;
+			border-radius: 15px 50px;
+			align:center;
+			box-shadow: 0 0 10px rgba(0, 0, 0, .7);
+		}
+		
+		.jump a 
+		{
+			color: black;
+			float: left;
+			padding: 8px 16px;
+			text-decoration: none;
+			transition: background-color .3s;
+			border: 1px solid #ddd;
+		}
+		
+		.jump a:hover:not(.active) 
+		{
+			background-color: #ddd;
+		}
+		
+		.guidebox
+		{
+			margin:10%;
+			width:78%;
+			height:60%;
+			background-color:white;
+			box-shadow: 0 0 10px rgba(0, 0, 0, .7);
+			padding:3%;
+			border-radius: 15px 50px;
+		}
+		
+		.title
+		{
+			font-size:30px;
+			font-weight:800;
+			font-family: Times, "Times New Roman", Georgia, serif;
+			margin-top:25px;
+			margin-botttom:90px;
+			text-shadow: 1px 1px 1px;
+		}
+		
+		table
+		{
+			text-align:left;
+			margin-top:20px;
+			margin-botttom:20px;
+			width:60%;
+			border: solid;
+			border-collapse: collapse;
+			
+		}
+		
+		table td, table th 
+		{
+		  border: 1px solid black;
+		}
+		
+		th, td
+		{
+			padding: 10px;
+		}
+		
+		td:hover 
+		{
+			background-color: #f0f0f0;
+		}
+		
+		.undertable
+		{
+			border-color:gold;
+		}
+		.healthytable
+		{
+			border-color:green;
+		}
+		.overtable
+		{
+			border-color:orange;
+		}
+		.obesetable
+		{
+			border-color:red;
+		}
+		
+		
+		.underbullet::marker
+		{
+			color: gold;
+		}
+		.healthybullet::marker
+		{
+			color:green;
+		}
+		.overbullet::marker
+		{
+			color:orange;
+		}
+		.obesebullet::marker
+		{
+			color: red;
+		}
+		
+		h3
+		{
+			padding-left :250px;
+		}
+		.user
+                {
+                        font-weight: 600;
+                        background-image:linear-gradient(180deg, palegreen, seagreen, seagreen);
+                        padding: 15px;
+                }
+		
+	</style>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+	<header>
+		<br><br>
+		<h1>Weight Management Guide</h1>
+	</header>
+	
+	<nav class="Navbar fixed-top">
+		<a href="index.html">Home</a>
+		<a href="#top">Guides</a>
+		<a href="add_class.html">BMI Calculator</a>
+		<a href="calc.html">Calorie Calculator</a>
+		<a href="track.html">Calorie Tracker</a>
+		<a href="faqs.html">FAQs</a>
+                <a class="user" href='login.jsp'>Login</a>
+		<a class="user" href='signup.jsp'>Sign Up</a>
+	</nav>
+	
+	<p class="pbox">
+		Welcome to our Weight Management Guide!<br>
+		Your full comprehensive plan for your journey for improved wellness, whether your goal is to gain muscle, lose those stubborn extra kilograms, or just live a more balanced lifestyle, our guide is carefully designed to provide customized solutions to meet your specific weight category needs, provided you know your Body Mass Index classification, if you do not know yours, <a href="add_class.html">click here</a> to use our calculator and come back to this page once you are done.
+	</p>
+	
+	<p class="pbox jump">
+		Jump to your Category: <br><br>
+		<a style="color: gold;" href="#underweight">Underweight</a> 
+		<a style="color: green;" href="#healthy">Healthy Weight</a> 
+		<a style="color: orange;" href="#overweight">Overweight</a> 
+		<a style="color: red;" href="#obesity">Obese</a>
+	</p>
+	
+	<div class="guidebox">
+	
+		
+		<h2 style="color: gold;" class="title" id="underweight">Underweight Guide</h2>
+		
+			
+		<p style="text-indent: 50px;">
+			Being underweight means that your weight is below the healthy weight range, if you are underweight you might find yourself get sick often, or feel very tired. That may be because you are not getting the right nutrients you need from your diet. You may also find your hair gets thinner or falls out, your skin gets very dry and your teeth are affected. Being underweight can pose several health risks that may include:
+			
+			<ul>
+				<li class="underbullet">Weakened immune system</li>
+				<li class="underbullet">Susceptibility to illness and infections</li>
+				<li class="underbullet">Nutrient deficiencies</li>
+				<li class="underbullet">Reduced energy levels</li>
+				<li class="underbullet">Osteoporosis (Bone Weakness)</li>
+			</ul>
+			
+			<br>
+			<h3>Diet Plan</h3>
+			<table class="undertable" border="1">
+				
+				<tr>
+					<th></th><th>Time</th><th>Meal</th>
+				</tr>
+				<tr>
+					<th>Breakfast</th><td>8:00 - 8:30AM</td>
+					<td><ul>
+						<li class="underbullet">2 Egg brown bread sandwich</li>
+						<li class="underbullet">1 Cup milk</li>
+						<li class="underbullet">3 Cashews</li>
+						<li class="underbullet">4 Almonds</li>
+						<li class="underbullet">2 Walnuts</li>
+					<ul></td>
+				</tr>
+				
+				<tr>
+					<th>AM-Snack</th><td>11:00 - 11:30AM</td>
+					<td><ul>
+						<li class="underbullet">1 Cup banana shake</li>
+						<li class="underbullet">Whole-Grain Crackers</li>
+					<ul></td>
+				</tr>
+				
+				<tr>
+					<th>Lunch</th><td>2:00 - 2:30PM</td>
+					<td><ul>
+						<li class="underbullet">Grilled Chicken Sandwich on Whole-Grain Bread</li>
+						<li class="underbullet">Lettuce</li>
+						<li class="underbullet">Tomato</li>
+						<li class="underbullet">Hummus</li>
+						<li class="underbullet">Fresh Fruit</li>
+					<ul></td>
+				</tr>
+				
+				<tr>
+					<th>PM-Snack</th><td>4:00 - 4:30PM</td>
+					<td><ul>
+						<li class="underbullet">1 Cup strawberry shake</li>
+						<li class="underbullet">1 Skim-Milk Mozzarella Cheese Stick</li>
+					<ul></td>
+				</tr>
+				
+				<tr>
+					<th>Dinner</th><td>8:00 - 8:30PM</td>
+					<td><ul>
+						<li class="underbullet">Grilled Salmon with Yogurt-Dill Sauce</li>
+						<li class="underbullet">Wild Rice</li>
+						<li class="underbullet">Asparagus grilled in Olive Oil</li>
+					<ul></td>
+				</tr>
+				<tr>
+					<th colspan="3">
+						<span style="color:red;">Note:</span> This Diet Plan should be your basic calorie intaking procedure and habit, swapping meals with equivalent nutritions for the sake of variety is also encouraged.
+					</th>
+				</tr>
+			</table>
+			
+			<br><br>
+			<h3>Workout Plan</h3>
+			<table class="undertable" border="1">
+				
+				<tr>
+					<th>Exercise</th><th>Sets</th><th>Reps</th>
+				</tr>
+				<tr>
+					<td>Deadlift</td><td>3 Sets</td><td>9 Reps</td>
+				</tr>
+				
+				<tr>
+					<td>Push-ups</td><td>3 Sets</td><td>As Many Rounds As Possible</td>
+				</tr>
+				
+				<tr>
+					<td>Dumbbell Bench Press</td><td>3 Sets</td><td>11 Reps</td>
+				</tr>
+				
+				<tr>
+					<td>Dumbbell Rows</td><td>3 Sets</td><td>11 Reps</td>
+				</tr>
+				
+				<tr>
+					<td>Bicep Curls</td><td>2 Sets</td><td>11 Reps</td>
+				</tr>
+				<tr>
+					<td>Triceps Extension</td><td>2 Sets</td><td>11 Reps</td>
+				</tr>
+				<tr>
+					<td>Lateral Raises</td><td>2 Sets</td><td>11 Reps</td>
+				</tr>
+				<tr>
+					<th colspan="3">
+						<span style="color:red;">Note:</span> You can alternate between different workouts that covers a specific area of the body with the same caliber as the table suggests, being consistent will build a balanced physique, gain more versatile strength, and keep your tendons and joints feeling fresher.
+					</th>
+				</tr>
+				
+			</table>
+		</p>
+		</div>
+		<div class="guidebox">
+		<h2 style="color: green;" class="title" id="healthy">Healthy Weight Guide</h2>
+
+
+			<p style="text-indent: 50px;">
+				Being at a healthy weight signifies that one's body is adequately nourished, muscles are strong, and organs are functioning optimally. This guide is completely optional for individuals who fall in this category. However, if you want to build muscle and supply your body with needed nutrients, we have you covered.
+				<br>
+				<h3>Diet Plan</h3>
+				<table class="healthytable" border="1">
+					
+					<tr>
+						<th></th><th>Time</th><th>Meal</th>
+					</tr>
+					<tr>
+						<th>Breakfast</th><td>8:00 - 8:30AM</td>
+						<td><ul>
+							<li class="healthybullet">Chocolate-Peanut Butter Protein Shake</li>
+						<ul></td>
+					</tr>
+					
+					<tr>
+						<th>AM-Snack</th><td>11:00 - 11:30AM</td>
+						<td><ul>
+							<li class="healthybullet">Low-fat plain Greek yogurt</li>
+							<li class="healthybullet">Sliced strawberries</li>
+						<ul></td>
+					</tr>
+					
+					<tr>
+						<th>Lunch</th><td>2:00 - 2:30PM</td>
+						<td><ul>
+							<li class="healthybullet">Turkey BLT Wrap</li>
+						<ul></td>
+					</tr>
+					
+					<tr>
+						<th>PM-Snack</th><td>4:00 - 4:30PM</td>
+						<td><ul>
+							<li class="healthybullet">Tangerine</li>
+							<li class="healthybullet">Cashew nuts</li>
+						<ul></td>
+					</tr>
+					
+					<tr>
+						<th>Dinner</th><td>8:00 - 8:30PM</td>
+						<td><ul>
+							<li class="healthybullet">Stuffed Cabbage Soup</li>
+						<ul></td>
+					</tr>
+					<tr>
+						<th colspan="3">
+							<span style="color:red;">Note:</span> Variety can be achieved if the combined meals calories and proteins match what is listed here.<br>
+							Daily Intake: 1,498 calories, 103 g protein, 131 g carbohydrates, 28 g fiber, 60 g fat, 1,585 mg sodium.
+						</th>
+					</tr>
+				</table>
+					
+				<br><br>
+				<h3>Workout Plan</h3>
+				<table class="healthytable" border="1">
+				
+					
+					<tr>
+						<th>Exercise</th><th>Sets</th><th>Reps</th>
+					</tr>
+					<tr>
+						<td>Goblet Squats</td><td>3 Sets</td><td>9 Reps</td>
+					</tr>
+					
+					<tr>
+						<td>Underhand Lat Pulldowns</td><td>3 Sets</td><td>9 Reps</td>
+					</tr>
+					
+					<tr>
+						<td>Romanian Deadlifts</td><td>3 Sets</td><td>9 Reps</td>
+					</tr>
+					
+					<tr>
+						<td>Push-ups</td><td>3 Sets</td><td>As Many Rounds As Possible</td>
+					</tr>
+					
+					<tr>
+						<td>Front Planks</td><td>2 Sets</td><td>5-10 slow breaths</td>
+					</tr>
+					<tr>
+						<td>Side Planks</td><td>2 Sets</td><td>5-10 slow breaths</td>
+					</tr>
+					<tr>
+						<td>Farmer Carries</td><td>2 Sets</td><td>40 steps</td>
+					</tr>
+					<tr>
+						<th colspan="3">
+							<span style="color:red;">Note:</span> Alternate between different workouts is encouraged, these are basic workouts and there are many more that can be done to achieve muscle building.
+						</th>
+					</tr>
+						
+				</table>
+			</p>
+		</div>
+		<div class="guidebox">
+		<h2 style="color: orange;" class="title" id="overweight">Overweight Guide</h2>
+		
+			
+				<p style="text-indent: 50px;">
+					Being overweight means that your weight is above the healthy weight range, if left untreated, it presents serious health risks and can result in a number of complications. Overweight people frequently have excess body fat, which puts stress on important organs and raises the possibility of chronic illnesses.Being overweight can pose several health risks that may include:
+					<ul>
+						<li class="overbullet">Type 2 diabetes</li>
+						<li class="overbullet">Heart disease</li>
+						<li class="overbullet">High blood pressure</li>
+						<li class="overbullet">Strokes</li>
+						<li class="overbullet">Joint problems</li>
+					</ul>
+					
+					<br>Moreover, being overweight can impact overall quality of life, leading to:
+					
+					<ul>
+						
+						<li class="overbullet">Reduced mobility</li>
+						<li class="overbullet">Low self-esteem,</li>
+						<li class="overbullet">Mental health issues such as depression and anxiety</li>
+					</ul>
+					
+					<br>Recognizing the symptoms of overweight, such as difficulty in performing physical activities, fatigue, shortness of breath, and chronic joint pain, is crucial for early intervention and effective management of weight-related health concerns.
+					
+					<br><br>
+					
+					<h3>Diet Plan</h3>
+					<table class="overtable" border="1">
+					
+						
+						<tr>
+							<th></th><th>Time</th><th>Meal</th>
+						</tr>
+						<tr>
+							<th>Breakfast</th><td>8:00 - 8:30AM</td>
+							<td><ul>
+								<li class="overbullet">Scrambled egg</li>
+								<li class="overbullet">Spinach</li>
+								<li class="overbullet">Tomatos</li>
+								<li class="overbullet">Apple slices with peanut butter</li>
+							<ul></td>
+						</tr>
+						
+						<tr>
+							<th>AM-Snack</th><td>11:00 - 11:30AM</td>
+							<td><ul>
+								<li class="overbullet">Whole grain rice cake</li>
+								<li class="overbullet">2 Boiled egg</li>
+							<ul></td>
+						</tr>
+						
+						<tr>
+							<th>Lunch</th><td>2:00 - 2:30PM</td>
+							<td><ul>
+								<li class="overbullet">Tuna salad</li>
+								<li class="overbullet">Lettuce</li>
+								<li class="overbullet">Tomato</li>
+								<li class="overbullet">Cucumber</li>
+								<li class="overbullet">Hummus and vegetable wrap</li>
+							<ul></td>
+						</tr>
+						
+						<tr>
+							<th>PM-Snack</th><td>4:00 - 4:30PM</td>
+							<td><ul>
+								<li class="overbullet">Blueberries</li>
+								<li class="overbullet">Coconut yogurt</li>
+							<ul></td>
+						</tr>
+						
+						<tr>
+							<th>Dinner</th><td>8:00 - 8:30PM</td>
+							<td><ul>
+								<li class="overbullet">Bean chili</li>
+								<li class="overbullet">Cauliflower rice</li>
+								<li class="overbullet">Fish tacos</li>
+							<ul></td>
+						</tr>
+						<tr>
+							<th colspan="3">
+								<span style="color:red;">Note:</span> Stay away from sugary products because any food that contains glucose will raise your insulin levels and prevent weight loss until that sugar energy is depleted.
+							</th>
+						</tr>
+					</table>
+					
+					<br><br>
+
+					<h3>Workout Plan</h3>
+					<table class="overtable" border="1">
+				
+					
+					<tr>
+						<th>Exercise</th><th>Sets</th><th>Reps</th>
+					</tr>
+					<tr>
+						<td>Leg extension</td><td>3 Sets</td><td>10 Reps</td>
+					</tr>
+					
+					<tr>
+						<td>Leg curls</td><td>3 Sets</td><td>10 Reps</td>
+					</tr>
+					
+					<tr>
+						<td>Bench Press</td><td>3 Sets</td><td>12 Reps</td>
+					</tr>
+					
+					<tr>
+						<td>Row</td><td>3 Sets</td><td>12 Reps</td>
+					</tr>
+					
+					<tr>
+						<td>Dumbbell Shoulder</td><td>3 Sets</td><td>12 Reps</td>
+					</tr>
+					<tr>
+						<td>Tricep kickbacks</td><td>3 Sets</td><td>12 Reps</td>
+					</tr>
+					<tr>
+						<td>Bicep curls</td><td>3 Sets</td><td>12 Reps</td>
+					</tr>
+					<tr>
+						<td>Abdominal crunches</td><td>4 Sets</td><td>10 Reps</td>
+					</tr>
+					<tr>
+						<td>Side crunches</td><td>4 Sets</td><td>10 Reps</td>
+					</tr>
+					<tr>
+						<td>Back extensions</td><td>3 Sets</td><td>10 Reps</td>
+					</tr>
+					<tr>
+						<th colspan="3">
+							<span style="color:red;">Note:</span> After ten weeks of the above exercise plan, the expected weight loss will be in the range of the BMI test showing a loss of 5 kg/m2.
+						</th>
+					</tr>		
+					</table>
+				</p>
+		</div>
+		<div class="guidebox">	
+		<h2 style="color: red;" class="title" id="obesity">Obesity Guide</h2>
+
+		<p style="text-indent: 50px;">
+			An excessive build-up of body fat is the hallmark of Obesity, its a quite complex health condition that can have significant effects on one's physical and mental health. It can lower the overall standard of life and greatly raise the risk of developing a number of serious health complications.<br>
+			Some of the key risks associated with obesity includes the likelihood of developing:
+			<ul>
+				<li class="obesebullet">Type 2 diabetes</li>
+				<li class="obesebullet">Cardiovascular diseases</li>
+				<li class="obesebullet">Hypertension</li>
+				<li class="obesebullet">Cancer</li>
+				<li class="obesebullet">Respiratory issues</li>
+				<li class="obesebullet">Musculoskeletal disorders</li>
+				<li class="obesebullet">Gastrointestinal Disorders</li>
+				<li class="obesebullet">Sleep Disorders</li>
+				<li class="obesebullet">Skin Conditions</li>
+				<li class="obesebullet">Psychological Effects</li>
+				<li class="obesebullet">Poor Wound Healing</li>
+	
+			</ul>
+			
+			The list goes on and on and its clear that obesity is absolutely horrific, the journey to a healthy body from here will be nothing but hardwork and patience.
+			
+			<br><br>
+			
+			<h3>Diet Plan</h3>
+			<table class="obesetable" border="1">
+					
+				
+				<tr>
+					<th></th><th>Time</th><th>Meal</th>
+				</tr>
+				<tr>
+					<th>Breakfast</th><td>8:00 - 8:30AM</td>
+					<td><ul>
+						<li class="obesebullet">Baked Banana-Nut Oatmeal Cups</li>
+						<li class="obesebullet">1 Apple</li>
+					<ul></td>
+				</tr>
+				
+				<tr>
+					<th>AM-Snack</th><td>11:00 - 11:30AM</td>
+					<td><ul>
+						<li class="obesebullet">1 Clementine</li>
+					<ul></td>
+				</tr>
+				
+				<tr>
+					<th>Lunch</th><td>2:00 - 2:30PM</td>
+					<td><ul>
+						<li class="obesebullet">Veggie and Hummus Sandwich</li>
+					<ul></td>
+				</tr>
+				
+				<tr>
+					<th>PM-Snack</th><td>4:00 - 4:30PM</td>
+					<td><ul>
+						<li class="obesebullet">1 Banana</li>
+						<li class="obesebullet">Coconut yogurt</li>
+					<ul></td>
+				</tr>
+				
+				<tr>
+					<th>Dinner</th><td>8:00 - 8:30PM</td>
+					<td><ul>
+						<li class="obesebullet">Sheet-Pan Chicken Fajita Bowl</li>
+						<li class="obesebullet">1/2 Cup cooked brown rice</li>
+					<ul></td>
+				</tr>
+				<tr>
+					<th colspan="3">
+						<span style="color:red;">Note:</span> Drink 1-2 cups of water before every meal and try to steer away from bread products, variety can be achieved if the combined meals calories and proteins match what is listed here.<br>
+						Daily Intake: 1,203 calories, 66 g protein, 177 g carbohydrate, 34 g fiber, 32 g fat, 1,186 mg sodium
+					</th>
+				</tr>
+			</table>
+			
+			<br><br>
+			<h3>Workout Plan</h3>
+			<table class="obesetable" border="1">
+				
+				
+				<tr>
+					<th>Exercise</th><th>Sets</th><th>Reps</th>
+				</tr>
+				<tr>
+					<td>Dumbbell Bench Press</td><td>3 Sets</td><td>12 Reps</td>
+				</tr>
+				
+				<tr>
+					<td>Bodyweight Squats</td><td>3 Sets</td><td>15 Reps</td>
+				</tr>
+				
+				<tr>
+					<td>Dumbbell Rows</td><td>4 Sets</td><td>12 Reps</td>
+				</tr>
+				
+				<tr>
+					<td>Lying Isometric Y</td><td>5 Sets</td><td>30 Second Hold</td>
+				</tr>
+				
+				<tr>
+					<td>Box Step-Ups</td><td>4 Sets</td><td>15 Reps Each Leg</td>
+				</tr>
+				<tr>
+					<td>Plank</td><td>5 Sets</td><td>30 Second Hold</td>
+				</tr>
+				
+				<tr>
+					<th colspan="3">
+						<span style="color:red;">Note:</span> After ten weeks of the above exercise plan, the expected weight loss will be in the range of the BMI test showing a loss of 7 kg/m2.
+					</th>
+				</tr>		
+			</table>
+		</p>
+	
+	</div>
+	
+</body>
+</html>

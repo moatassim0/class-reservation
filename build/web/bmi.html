@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>BMI Calculator</title>
+    <style>
+        body 
+		{
+			margin: 0;
+			padding: 0;
+			font-family: Arial, sans-serif;
+			background-image: url('BG.jpg');
+			background-repeat: repeat;
+
+		}
+		
+		header 
+		{
+			background-color: seaGreen;
+			color: white;
+			padding: 1rem;
+			text-align: center;
+		}
+		
+		p 
+		{
+			line-height: 1.5;
+			margin-bottom: 1rem;
+			width: 80%;
+			margin-left:10%;
+			margin-right:10%;
+			padding:2%;
+			background-color:white;
+			border-radius: 15px 50px;
+		}
+
+		
+		nav 
+		{
+			background-color: seaGreen;
+			color: white;
+			padding: 1rem;
+			text-align: center;
+			position: fixed;
+			width: 100%;
+			top: 0;
+			z-index: 1000;
+			max-height: 60px;
+			overflow-y: auto;
+			
+		}
+
+		nav a 
+		{
+			color: white;
+			text-decoration: none;
+			margin: 0 1rem;
+		}
+
+		nav a:hover 
+		{
+			color: lightgray;
+		}
+		
+		h1 
+		{
+			color: white;
+			margin-bottom: 1rem;
+		}
+		
+		label 
+		{
+            display: block;
+            margin-bottom: 5px;
+        }
+        .container 
+		{
+            margin-left:10%;
+			margin-top:10%;
+			width:30%;
+			height:30%;
+			background-color:white;
+			box-shadow: 0 0 10px rgba(0, 0, 0, .7);
+			padding:3%;
+			border-radius: 15px 50px;
+
+        }
+        
+		h2 
+		{
+            text-align: center;
+        }
+
+
+        #result 
+		{
+            margin-left:10%;
+			margin-bottom:30%;
+			width:32%;
+            text-align: center;
+			background-color:white;
+			box-shadow: 0 0 10px rgba(0, 0, 0, .7);
+			border-radius: 15px 50px;
+        }
+		
+		#p1
+		{
+			opacity:0.8;
+			border-radius: 15px 50px;
+		}
+		
+		input[type=number] 
+		{
+			padding: 10px 10px;
+			margin: 5px 0;
+			box-sizing: border-box;
+			border-radius: 9px;
+		}
+		
+		input[type=number]:focus 
+		{
+			border: 3px solid gray;
+		}
+		
+		td
+		{
+			padding-right: 30px;
+			padding-left: 20px;
+		}
+                .user
+                {
+                        font-weight: 600;
+                        background-image:linear-gradient(180deg, palegreen, seagreen, seagreen);
+                        padding: 15px;
+                }
+                .button 
+            {
+                    background-color: seaGreen;
+                    color: white;
+                    padding: 0.5rem 1rem;
+                    border: none;
+                    border-radius: 5px;
+                    cursor: pointer;
+                    transition-duration: 0.5s;
+            }
+
+            .button:hover 
+            {
+                    background-color: green;
+                     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+            }
+
+            .button a 
+            {
+                    color: white;
+                    text-decoration: none;
+            }
+
+            .button a:hover 
+            {
+                    color: white;
+            }
+
+            .button:active 
+            {
+                    background-color: palegreen;
+                    box-shadow: 0 5px #666;
+                    transform: translateY(3px);
+            }
+    </style>
+    
+	<script>
+        function calculateBMI() 
+		{
+			var weight = parseFloat(document.getElementById("weight").value);
+			var height = parseFloat(document.getElementById("height").value);
+			var bmi = weight / ((height / 100) * (height / 100));
+			var bmiCategory = "";
+
+			if (bmi < 18.5) {
+				bmiCategory = "Underweight";
+			} else if (bmi >= 18.5 && bmi < 25) {
+				bmiCategory = "Healthy Weight";
+			} else if (bmi >= 25 && bmi < 30) {
+				bmiCategory = "Overweight";
+			} else {
+				bmiCategory = "Obese";
+			}
+
+			var resultContainer = document.getElementById("result");
+			 if (bmiCategory === "Underweight") {
+				resultContainer.innerHTML = "BMI: " + bmi.toFixed(2) + " <br> Your are in the <span style=\"color:gold;\">" + bmiCategory + "</span>  Category";
+			} else if (bmiCategory === "Healthy Weight") {
+				resultContainer.innerHTML = "BMI: " + bmi.toFixed(2) + " <br> Your are in the <span style=\"color:green;\">" + bmiCategory + "</span> Category";
+			} else if (bmiCategory === "Overweight") {
+				resultContainer.innerHTML = "BMI: " + bmi.toFixed(2) + " <br> Your are in the <span style=\"color:orange;\">" + bmiCategory + "</span> Category";
+			} else {
+				resultContainer.innerHTML = "BMI: " + bmi.toFixed(2) + " <br> Your are in the <span style=\"color:red;\">" + bmiCategory + "</span> Category";
+			}
+
+			
+			var paragraph = document.createElement("p");
+			var link = document.createElement("a");
+			link.textContent = "View our Guide based on your BMI";
+			if (bmiCategory === "Underweight") {
+				link.href = "guide.html#underweight";
+			} else if (bmiCategory === "Healthy Weight") {
+				link.href = "guide.html#healthy";
+			} else if (bmiCategory === "Overweight") {
+				link.href = "guide.html#overweight";
+			} else {
+				link.href = "guide.html#obesity";
+			}
+			paragraph.appendChild(link);
+			resultContainer.appendChild(paragraph);
+		}
+
+    </script>
+</head>
+<body>
+    <header>
+		<br>
+		<h1>Body Mass Index (BMI) Calculator</h1>
+	</header>
+	
+	<nav>
+		<a href="index.html">Home</a>
+		<a href="guide.html">Guides</a>
+		<a href="#top">BMI Calculator</a>
+		<a href="calc.html">Calorie Calculator</a>
+		<a href="track.html">Calorie Tracker</a>
+		<a href="faqs.html">FAQs</a>
+                <a class="user" href='login.jsp'>Login</a>
+		<a class="user" href='signup.jsp'>Sign Up</a>
+	</nav>
+	
+	<p id="p1">
+		Welcome to our BMI Calculator!<br>
+		The Body Mass Index Calculator is a valuable tool designed to help you assess your body composition effectively, by providing your height and weight into the calculator you can determine your index, which is a numerical value that provides insight into your overall health status based on your body size.<br>
+		Why BMI though ? <br>
+		It is the most accurate tool available that can categorize your body type within a certain range relative to your health.
+	</p>
+	
+	<div class="container">
+        <h2>Enter your body values</h2>
+        <form>
+            <table>
+				<tr>
+					<td><label for="weight">Weight (kg):</label></td>
+					<td><input type="number" id="weight" name="weight" min="25" step="5" required></td>
+				</tr>
+				<tr>
+					<td><label for="height">Height (cm):</label></td>
+					<td><input type="number" id="height" name="height" min="130" step="5" required><br></td>
+				</tr>
+				<tr colspan="2">
+					<td><button class="button" type="button" onclick="calculateBMI()">Calculate</button>    <input class ="button" type="reset" value="Reset"></td>
+				</tr>
+			</table>
+        </form>
+        
+    </div>
+	<p id="result"></p>
+    
+</body>
+</html>

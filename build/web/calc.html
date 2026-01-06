@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Fitness Website</title>
+	<style>
+		body 
+		{
+			margin: 0;
+			padding: 0;
+			font-family: Arial, sans-serif;
+			background-image: url('BG.jpg');
+			background-repeat: repeat;
+
+		}
+		
+		header 
+		{
+			background-color: seaGreen;
+			color: white;
+			padding: 1rem;
+			text-align: center;
+		}
+		
+		#intro 
+		{
+			line-height: 1.5;
+			margin-bottom: 1rem;
+			width: 80%;
+			margin-left:10%;
+			margin-right:10%;
+			padding:2%;
+			background-color:white;
+			opacity:0.8;
+			border-radius: 15px 50px;
+		}
+		
+		p
+		{
+			line-height: 1.5;
+			margin-bottom: 1rem;
+			width: 70%;
+			margin-left:10%;
+			margin-right:10%;
+			padding:2%;
+			background-color:white;
+			opacity:0.8;
+			border-radius: 15px 50px;
+			padding:10%;
+		}
+		
+		nav 
+		{
+			background-color: seaGreen;
+			color: white;
+			padding: 1rem;
+			text-align: center;
+			position: fixed;
+			width: 100%;
+			top: 0;
+			z-index: 1000;
+			max-height: 60px;
+			overflow-y: auto;
+			
+		}
+
+		nav a 
+		{
+			color: white;
+			text-decoration: none;
+			margin: 0 1rem;
+		}
+
+		nav a:hover 
+		{
+			color: lightgray;
+		}
+
+		h1 
+		{
+			color: white;
+			margin-bottom: 1rem;
+		}
+		
+		label 
+		{
+            display: block;
+            margin-bottom: 5px;
+        }
+		
+		.formbox
+		{
+			margin:8%;
+			width:80%;
+			height:50%;
+			padding:3%;
+			background-color: white;
+			box-shadow: 0 0 10px rgba(0, 0, 0, .7);
+			border-radius: 15px 50px;
+		}
+		
+		#result
+		{
+			margin-bottom:100px;
+			line-height: 1.5;
+			margin-top:2%;
+			margin-bottom: 1rem;
+			width: 35%;
+			margin-left:20%;
+			margin-right:20%;
+			padding:5%;
+			opacity:1;
+			border-radius: 15px 50px;
+			align:center;
+		}
+		
+		input[type=number] 
+		{
+			padding: 10px 10px;
+			margin: 5px 0;
+			box-sizing: border-box;
+			border-radius: 9px;
+		}
+		
+		input[type=number]:focus 
+		{
+			border: 3px solid gray;
+		}
+		
+		td
+		{
+			padding-right: 30px;
+			padding-left: 20px;
+		}
+                .user
+                {
+                        font-weight: 600;
+                        background-image:linear-gradient(180deg, palegreen, seagreen, seagreen);
+                        padding: 15px;
+                }
+
+	</style>
+	<script>
+		function calculateAndScroll() {
+            
+            calculate();
+
+            
+            document.getElementById('result').scrollIntoView({ behavior: 'smooth' });
+        }
+		
+		function calculate()
+		{
+			var form = document.getElementById("foodForm");
+			var appleCalories = parseFloat(form.elements["apple"].value) * 52;
+			var bananaCalories = parseFloat(form.elements["banana"].value) * 89;
+			var orangeCalories = parseFloat(form.elements["orange"].value) * 47;
+			var strawberriesCalories = parseFloat(form.elements["strawberries"].value) * 32;
+			var grapesCalories = parseFloat(form.elements["grapes"].value) * 69;
+			var watermelonCalories = parseFloat(form.elements["watermelon"].value) * 30;
+			var carrotCalories = parseFloat(form.elements["carrot"].value) * 41;
+			var broccoliCalories = parseFloat(form.elements["broccoli"].value) * 34;
+			var spinachCalories = parseFloat(form.elements["spinach"].value) * 23;
+			var lettuceCalories = parseFloat(form.elements["lettuce"].value) * 15;
+			var tomatoCalories = parseFloat(form.elements["tomato"].value) * 18;
+			var cucumberCalories = parseFloat(form.elements["cucumber"].value) * 15;
+			var onionCalories = parseFloat(form.elements["onion"].value) * 40;
+			var potatoCalories = parseFloat(form.elements["potato"].value) * 77;
+			var sweetPotatoCalories = parseFloat(form.elements["sweet-potato"].value) * 86;
+			var riceCalories = parseFloat(form.elements["rice"].value) * 130;
+			var pastaCalories = parseFloat(form.elements["pasta"].value) * 131;
+			var breadCalories = parseFloat(form.elements["bread"].value) * 265;
+			var oatsCalories = parseFloat(form.elements["oats"].value) * 389;
+			var milkCalories = parseFloat(form.elements["milk"].value) * 42;
+			var cheeseCalories = parseFloat(form.elements["cheese"].value) * 402;
+			var yogurtCalories = parseFloat(form.elements["yogurt"].value) * 59;
+			var eggCalories = parseFloat(form.elements["egg"].value) * 143;
+			var chickenBreastCalories = parseFloat(form.elements["chicken-breast"].value) * 165;
+			var beefSteakCalories = parseFloat(form.elements["beef-steak"].value) * 250;
+			var salmonCalories = parseFloat(form.elements["salmon"].value) * 208;
+			var tunaCalories = parseFloat(form.elements["tuna"].value) * 116;
+			
+			var totalCalories = appleCalories + bananaCalories + orangeCalories + strawberriesCalories + grapesCalories + watermelonCalories + carrotCalories + broccoliCalories + spinachCalories + lettuceCalories + tomatoCalories + cucumberCalories +onionCalories + potatoCalories + sweetPotatoCalories + riceCalories + pastaCalories + breadCalories + oatsCalories + milkCalories + cheeseCalories +yogurtCalories + eggCalories + chickenBreastCalories + beefSteakCalories + salmonCalories + tunaCalories;
+			
+			var resultContainer = document.getElementById("result");
+			var caloriesParagraph = document.createElement("p");
+			
+			caloriesParagraph.innerHTML = "Total Calories: <span style='color: red;'>" + totalCalories.toFixed(2) + "</span>";
+			resultContainer.innerHTML = "";
+			
+			resultContainer.appendChild(caloriesParagraph);
+		}
+	</script>
+</head>
+<body>
+	<header>
+		<br>
+		<h1>Calorie Calculator</h1>
+	</header>
+	
+	<nav>
+		<a href="index.html">Home</a>
+		<a href="guide.html">Guides</a>
+		<a href="add_class.html">BMI Calculator</a>
+		<a href="#top">Calorie Calculator</a>
+		<a href="track.html">Calorie Tracker</a>
+		<a href="faqs.html">FAQs</a>
+                <a class="user" href='login.jsp'>Login</a>
+		<a class="user" href='signup.jsp'>Sign Up</a>
+	</nav>
+	
+	<p id="intro">
+		Welcome to our Calorie Calculator!<br>
+		Your personalized tool for monitoring and managing your daily caloric intake, with our calorie calculator you can effortlessly keep track of the calories you are taking through all the possible nutriment and edibles that are listed here.<br>
+	</p>
+	
+	<div class="formbox">
+		<h2>Enter Values in Kilograms <sup>(0.25g per 1 serving size)</sup></h2>
+			
+		<form id="foodForm">
+		<table>
+			<tr>
+				<td><label for="apple">Apple</label></td>
+				<td><input type="number" id="apple" name="apple" step="0.25" min="0" value="0"></td>
+				
+				<td><label for="banana">Banana</label></td>
+				<td><input type="number" id="banana" name="banana" step="0.25" min="0" value="0"></td>
+				
+				<td><label for="orange">Orange</label></td>
+				<td><input type="number" id="orange" name="orange" step="0.25" min="0" value="0"></td>
+			</tr>
+			<tr>
+				<td><label for="strawberries">Strawberries</label></td>
+				<td><input type="number" id="strawberries" name="strawberries" step="0.25" min="0" value="0"></td>
+				
+				<td><label for="grapes">Grapes</label></td>
+				<td><input type="number" id="grapes" name="grapes" step="0.25" min="0" value="0"></td>
+				
+				<td><label for="watermelon">Watermelon</label></td>
+				<td><input type="number" id="watermelon" name="watermelon" step="0.25" min="0" value="0"></td>
+			</tr>
+			<tr>
+				<td><label for="carrot">Carrot</label></td>
+				<td><input type="number" id="carrot" name="carrot" step="0.25" min="0" value="0"></td>
+				
+				<td><label for="broccoli">Broccoli</label></td>
+				<td><input type="number" id="broccoli" name="broccoli" step="0.25" min="0" value="0"></td>
+				
+				<td><label for="spinach">Spinach</label></td>
+				<td><input type="number" id="spinach" name="spinach" step="0.25" min="0" value="0"></td>
+			</tr>
+			<tr>
+				<td><label for="lettuce">Lettuce</label></td>
+				<td><input type="number" id="lettuce" name="lettuce" step="0.25" min="0" value="0"></td>
+				
+				<td><label for="tomato">Tomato</label></td>
+				<td><input type="number" id="tomato" name="tomato" step="0.25" min="0" value="0"></td>
+				
+				<td><label for="cucumber">Cucumber</label></td>
+				<td><input type="number" id="cucumber" name="cucumber" step="0.25" min="0" value="0"></td>
+			</tr>
+			<tr>
+				<td><label for="onion">Onion</label></td>
+				<td><input type="number" id="onion" name="onion" step="0.25" min="0" value="0"></td>
+				
+				<td><label for="potato">Potato</label></td>
+				<td><input type="number" id="potato" name="potato" step="0.25" min="0" value="0"></td>
+				
+				<td><label for="sweet-potato">Sweet Potato</label></td>
+				<td><input type="number" id="sweet-potato" name="sweet-potato" step="0.25" min="0" value="0"></td>
+			</tr>
+			<tr>
+				<td><label for="rice">Rice</label></td>
+				<td><input type="number" id="rice" name="rice" step="0.25" min="0" value="0"></td>
+				
+				<td><label for="pasta">Pasta</label></td>
+				<td><input type="number" id="pasta" name="pasta" step="0.25" min="0" value="0"></td>
+				
+				<td><label for="bread">Bread</label></td>
+				<td><input type="number" id="bread" name="bread" step="0.25" min="0" value="0"></td>
+			</tr>
+			<tr>
+				<td><label for="oats">Oats</label></td>
+				<td><input type="number" id="oats" name="oats" step="0.25" min="0" value="0"></td>
+				
+				<td><label for="milk">Milk</label></td>
+				<td><input type="number" id="milk" name="milk" step="0.25" min="0" value="0"></td>
+				
+				<td><label for="cheese">Cheese</label></td>
+				<td><input type="number" id="cheese" name="cheese" step="0.25" min="0" value="0"></td>
+			</tr>
+			<tr>
+				<td><label for="yogurt">Yogurt</label></td>
+				<td><input type="number" id="yogurt" name="yogurt" step="0.25" min="0" value="0"></td>
+				
+				<td><label for="egg">Egg</label></td>
+				<td><input type="number" id="egg" name="egg" step="0.25" min="0" value="0"></td>
+				
+				<td><label for="chicken-breast">Chicken Breast</label></td>
+				<td><input type="number" id="chicken-breast" name="chicken-breast" step="0.25" min="0" value="0"></td>
+			</tr>
+			<tr>
+				<td><label for="beef-steak">Beef Steak</label></td>
+				<td><input type="number" id="beef-steak" name="beef-steak" step="0.25" min="0" value="0"></td>
+				
+				<td><label for="salmon">Salmon</label></td>
+				<td><input type="number" id="salmon" name="salmon" step="0.25" min="0" value="0"></td>
+				
+				<td><label for="tuna">Tuna</label></td>
+				<td><input type="number" id="tuna" name="tuna" step="0.25" min="0" value="0"></td>
+			</tr>
+			
+			<tr><td><br></td></tr>
+			
+			<tr colspan="4">
+				<td><button type="button" onclick="calculateAndScroll()">Calculate</button> <input type="reset" value="Reset"></td>
+			</tr>
+		</table>
+		
+		</form>
+    </div>
+	
+	
+    <div id="result"></div>
+	
+</body>
+</html>
