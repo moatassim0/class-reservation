@@ -1,88 +1,139 @@
 # Fitness Guide and Class Reservation Web App
 
-A Java EE web application for fitness guidance and class booking.  
-The app combines public fitness tools (BMI, calorie calculator/tracker, guides) with authenticated booking features for users and admins.
+A Java EE web application for fitness guidance and class booking.
+The app combines public fitness tools (BMI calculator, calorie tracker, fitness guides) with authenticated booking features for users and admins.
+
+---
+
+## Table of Contents
+
+- [Overview](#overview)
+- [Tech Stack](#tech-stack)
+- [Project Structure](#project-structure)
+- [Prerequisites](#prerequisites)
+- [Database Setup](#database-setup)
+- [Configure and Run](#configure-and-run)
+- [How to Use the Web App](#how-to-use-the-web-app)
+- [Main Routes](#main-routes)
+- [Default Seed Accounts](#default-seed-accounts)
+- [Known Limitations](#known-limitations)
+- [Troubleshooting](#troubleshooting)
+- [Suggested Improvements](#suggested-improvements)
+
+---
 
 ## Overview
 
-This project is built with:
+This project is a role-based fitness web application that allows users to browse, search, and book fitness classes, while admins can manage class listings. A set of public tools is available without login.
 
-- Java Servlet/JSP (Java 8 style project)
-- Apache Ant (NetBeans web project structure)
-- GlassFish server (project configured for GlassFish 5 / Java EE 8 Web)
-- Apache Derby database (`jdbc:derby://localhost:1527/project`)
+**Key capabilities:**
 
-Main capabilities:
-
-- User signup and login
+- User registration and login
 - Role-based dashboards (`user`, `admin`)
 - Browse and book fitness classes
 - Search classes by name, max price, and seat availability
-- View purchase history
+- View purchase and booking history
 - Update profile and wallet balance
 - Admin class management (add and update classes)
+- Public fitness tools: BMI calculator, calorie calculator, calorie tracker, fitness guide, FAQs
+
+---
+
+## Tech Stack
+
+| Layer | Technology |
+|---|---|
+| Backend | Java Servlets / JSP (Java EE 8) |
+| Build Tool | Apache Ant (NetBeans project structure) |
+| Server | GlassFish 5.x |
+| Database | Apache Derby (`jdbc:derby://localhost:1527/project`) |
+| Frontend | JSP, HTML, CSS |
+
+---
 
 ## Project Structure
 
-- `web/`: JSP pages, static HTML/CSS, and DB setup SQL
-- `src/java/`: Servlet classes
-- `web/WEB-INF/web.xml`: Servlet registration and URL mappings
-- `web/sql.txt`: Database schema and seed data
-- `build.xml`: Ant build/deploy file
+```
+project-root/
+├── src/java/              # Servlet classes
+├── web/
+│   ├── *.jsp              # JSP pages (user, admin, booking flows)
+│   ├── index.html         # Public landing page
+│   ├── sql.txt            # Database schema and seed data
+│   └── WEB-INF/
+│       └── web.xml        # Servlet registration and URL mappings
+└── build.xml              # Ant build and deploy configuration
+```
+
+---
 
 ## Prerequisites
 
-Install the following before running:
+Install the following before running the project:
 
-1. JDK 8 (or compatible with Java EE 8 tooling)
-2. Apache NetBeans (recommended, since this is a NetBeans project)
-3. GlassFish Server 5.x
-4. Apache Derby running in network mode on port `1527`
+1. **JDK 8** — compatible with Java EE 8 tooling
+2. **Apache NetBeans** — recommended IDE, as this is a NetBeans project
+3. **GlassFish Server 5.x** — the configured target server
+4. **Apache Derby** — must be running in network mode on port `1527`
+
+---
 
 ## Database Setup
 
-1. Start Derby network server.
-2. Create database: `project`.
-3. Execute SQL from `web/sql.txt` to create tables:
-   - `users`
-   - `classes`
-   - `purchases`
-4. Seed initial users/classes using the inserts in `web/sql.txt`.
+1. Start the Derby network server.
+2. Create a database named `project`.
+3. Execute the SQL from `web/sql.txt` to create the following tables:
 
-### Important Notes About `sql.txt`
+| Table | Purpose |
+|---|---|
+| `users` | Stores registered user accounts and roles |
+| `classes` | Stores available fitness classes |
+| `purchases` | Records class booking transactions |
 
-- The file contains sample seed statements; review them before executing.
-- One sample user insert line has a syntax issue due to an extra semicolon before the next row.
-- Use Derby SQL syntax when executing timestamps and inserts.
+4. Run the insert statements in `web/sql.txt` to seed initial users and classes.
+
+### Notes on `sql.txt`
+
+- Review the file before executing — it contains sample seed data that may need adjustment for your environment.
+- One sample user insert contains a syntax issue (an extra semicolon before the next row); fix this before running.
+- Use Derby-compatible SQL syntax for timestamps and inserts.
+
+---
 
 ## Configure and Run
 
 ### Option A (Recommended): NetBeans + GlassFish
 
-1. Open the project folder in NetBeans.
-2. Ensure the project target server is set to GlassFish.
-3. Start GlassFish from NetBeans or separately.
-4. Build and run the project.
-5. Open the app landing page:
-   - `http://localhost:8080/Project/`
-   - WAR/project name is configured as `Project.war`.
+1. Open the project folder in Apache NetBeans.
+2. Confirm the target server is set to GlassFish 5.
+3. Start GlassFish from within NetBeans or separately.
+4. Build and run the project from NetBeans.
+5. Access the app at:
+
+```
+http://localhost:8080/Project/
+```
+
+> The WAR is deployed as `Project.war`, so the context path is `/Project`.
 
 ### Option B: Ant Build
 
-From project root:
+From the project root, run:
 
 ```bash
 ant clean
 ant
 ```
 
-Then deploy the generated WAR from `dist/Project.war` to your servlet container.
+Then deploy the generated file at `dist/Project.war` to your servlet container manually.
+
+---
 
 ## How to Use the Web App
 
-### Public (No Login)
+### Public Access (No Login Required)
 
-From `index.html`, users can access:
+From `index.html`, anyone can access:
 
 - Fitness guide
 - BMI calculator
@@ -90,81 +141,105 @@ From `index.html`, users can access:
 - Calorie tracker
 - FAQs
 
-To use booking and account features, go to `signup.jsp` or `login.jsp`.
+To access booking and account features, navigate to `signup.jsp` or `login.jsp`.
+
+---
 
 ### User Flow
 
-1. Register via `signup.jsp` (creates a `user` account).
-2. Login via `login.jsp`.
-3. Open `UserDashboard.jsp`.
-4. Click **Book** to browse classes (`browse_classes`).
-5. Choose class and quantity, then confirm booking.
-6. After success, check:
-   - `history.jsp` for transactions
-   - `updateProfile.jsp` to update details or add balance
+1. Register at `signup.jsp` — creates an account with the `user` role.
+2. Log in at `login.jsp`.
+3. You will be directed to `UserDashboard.jsp`.
+4. Click **Book** to browse available classes (`/browse_classes`).
+5. Select a class and quantity, then confirm the booking.
+6. After a successful booking:
+   - View transaction history at `history.jsp`
+   - Update your profile or add wallet balance at `updateProfile.jsp`
+
+---
 
 ### Admin Flow
 
-1. Login with an account that has role `admin`.
-2. Open `AdminDashboard.jsp`.
-3. Admin options:
-   - `add.jsp`: create new classes
-   - `updateClass.jsp`: update class details
-   - Access search/history/profile pages
+1. Log in with an account that has the `admin` role.
+2. You will be directed to `AdminDashboard.jsp`.
+3. Available admin actions:
+   - `add.jsp` — create new fitness classes
+   - `updateClass.jsp` — edit existing class details
+   - Access search, history, and profile pages as normal
+
+---
 
 ## Main Routes
 
-### JSP/HTML Pages
+### Pages
 
-- `index.html` - landing page
-- `login.jsp` - login
-- `signup.jsp` - registration
-- `UserDashboard.jsp` - user dashboard
-- `AdminDashboard.jsp` - admin dashboard
-- `search.jsp` - class search
-- `history.jsp` - purchase history
-- `updateProfile.jsp` - profile update form
-- `purchase.jsp` - booking confirmation
-- `purchaseSuccess.jsp` - booking success page
+| Path | Description |
+|---|---|
+| `index.html` | Public landing page |
+| `login.jsp` | Login form |
+| `signup.jsp` | Registration form |
+| `UserDashboard.jsp` | Authenticated user dashboard |
+| `AdminDashboard.jsp` | Admin dashboard |
+| `search.jsp` | Class search |
+| `history.jsp` | Purchase and booking history |
+| `updateProfile.jsp` | Profile and wallet update |
+| `purchase.jsp` | Booking confirmation |
+| `purchaseSuccess.jsp` | Booking success page |
+| `add.jsp` | Admin: add new class |
+| `updateClass.jsp` | Admin: edit class |
 
-### Servlet Endpoints (from `web.xml`)
+### Servlet Endpoints
 
-- `/SignupServlet`
-- `/LoginServlet`
-- `/browse_classes`
-- `/purchaseServlet`
-- `/updateclassservlet`
+| Endpoint | Purpose |
+|---|---|
+| `/SignupServlet` | Handles user registration |
+| `/LoginServlet` | Handles authentication |
+| `/browse_classes` | Returns class listings |
+| `/purchaseServlet` | Processes booking transactions |
+| `/updateclassservlet` | Handles admin class updates |
 
-Note: Current UI pages mostly process login/signup/admin updates directly in JSPs, while browse and purchase features rely on servlet endpoints.
+> **Note:** Login, signup, and some admin updates are currently handled directly in JSPs. Browse and purchase features route through servlet endpoints.
+
+---
 
 ## Default Seed Accounts
 
-Based on `web/sql.txt` sample data:
+The following accounts are included in the sample seed data from `web/sql.txt`:
 
-- User: `ahmad` / `123`
-- Admin: `admin` / `123`
+| Role | Username | Password |
+|---|---|---|
+| User | `ahmad` | `123` |
+| Admin | `admin` | `123` |
 
-If seed data differs in your local DB, use the credentials currently stored in your `users` table.
+> If you have modified the seed data or your local database differs, use the credentials currently stored in your `users` table.
+
+---
 
 ## Known Limitations
 
-- Passwords are stored in plain text (no hashing) in current implementation.
-- Authentication is cookie-based without advanced session security controls.
-- Some servlet classes and JSP routes overlap in responsibility (mixed architecture).
-- Derby connection settings are hardcoded in multiple JSP/Servlet files.
+- **Plain-text passwords** — no hashing or encryption is applied to stored passwords.
+- **Basic session handling** — authentication relies on cookies without advanced session security controls.
+- **Mixed architecture** — some servlet classes and JSP pages share overlapping responsibilities, making the codebase harder to maintain.
+- **Hardcoded database config** — the Derby connection URL and credentials are hardcoded across multiple JSP and Servlet files.
+
+---
 
 ## Troubleshooting
 
-- **`No suitable driver` / DB errors**: Ensure Derby driver is available to GlassFish and Derby network server is running.
-- **Cannot login after signup**: Verify DB contents in `users` table and that cookies are enabled.
-- **Blank class list**: Confirm `classes` table has data and DB URL is reachable.
-- **404 on pages/endpoints**: Confirm app context path is `Project` and server deploy succeeded.
+| Symptom | Solution |
+|---|---|
+| `No suitable driver` / DB connection errors | Ensure the Derby JDBC driver is available to GlassFish and the Derby network server is running on port `1527` |
+| Cannot log in after signup | Verify the `users` table contains the registered entry and that cookies are enabled in the browser |
+| Blank class list | Confirm the `classes` table has data and the DB URL is reachable from the server |
+| 404 on pages or endpoints | Verify the app context path is `/Project` and that the deployment completed successfully |
+
+---
 
 ## Suggested Improvements
 
-- Move all DB and business logic from JSP into servlets/services.
-- Add password hashing (e.g., BCrypt) and secure session handling.
-- Externalize DB config to environment or server resources.
-- Add input validation and centralized error handling.
-- Add automated tests for booking flow and profile updates.
-
+- **Separate concerns** — move all database queries and business logic out of JSPs and into dedicated servlet or service classes.
+- **Password security** — implement password hashing (e.g., BCrypt) and use secure, server-side session management.
+- **Externalize configuration** — move the database URL and credentials to server resources (JNDI) or environment variables instead of hardcoding them.
+- **Input validation** — add server-side validation and centralized error handling across all forms.
+- **Automated testing** — write unit and integration tests covering the booking flow, authentication, and profile updates.
+- **Upgrade stack** — consider migrating to a modern framework (e.g., Jakarta EE 10, Spring Boot) with a more actively maintained database driver.
