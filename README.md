@@ -18,7 +18,6 @@ The app combines public fitness tools (BMI calculator, calorie tracker, fitness 
 - [Default Seed Accounts](#default-seed-accounts)
 - [Known Limitations](#known-limitations)
 - [Troubleshooting](#troubleshooting)
-- [Suggested Improvements](#suggested-improvements)
 
 ---
 
@@ -233,13 +232,3 @@ The following accounts are included in the sample seed data from `web/sql.txt`:
 | Blank class list | Confirm the `classes` table has data and the DB URL is reachable from the server |
 | 404 on pages or endpoints | Verify the app context path is `/Project` and that the deployment completed successfully |
 
----
-
-## Suggested Improvements
-
-- **Separate concerns** — move all database queries and business logic out of JSPs and into dedicated servlet or service classes.
-- **Password security** — implement password hashing (e.g., BCrypt) and use secure, server-side session management.
-- **Externalize configuration** — move the database URL and credentials to server resources (JNDI) or environment variables instead of hardcoding them.
-- **Input validation** — add server-side validation and centralized error handling across all forms.
-- **Automated testing** — write unit and integration tests covering the booking flow, authentication, and profile updates.
-- **Upgrade stack** — consider migrating to a modern framework (e.g., Jakarta EE 10, Spring Boot) with a more actively maintained database driver.
